@@ -3,6 +3,8 @@ import GlobalStyle from "./assets/styles/global";
 import { darkTheme, lightTheme } from "./assets/styles/themes";
 import { Header } from "./components/Header";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { LandingPage } from "./pages/LandingPage";
+import ProjectsPage from "./pages/ProjectsPage";
 
 function App() {
   const [theme, setTheme] = useLocalStorage("GET_ITEM", "dark");
@@ -11,15 +13,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme === "dark" ? darkTheme : lightTheme}>
-      <button
-        onClick={() => {
+      <GlobalStyle />
+      <Header
+        setTheme={() => {
           setTheme(theme === "dark" ? "light" : "dark");
         }}
-      >
-        Change theme
-      </button>
-      <GlobalStyle />
-      <Header />
+      />
+      <LandingPage />
     </ThemeProvider>
   );
 }
